@@ -1,3 +1,4 @@
+"use client";
 import { FaPhone } from "react-icons/fa6";
 import MagicButton from "../ui/MagicButton";
 import { Spotlight } from "../ui/Spotlight";

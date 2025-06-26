@@ -1,3 +1,4 @@
+"use client";
 import { Why_DOTR } from "../- ReUseable/Why_DOTR";
 
 export const why_choose_dotr = [

@@ -1,3 +1,4 @@
+"use client";
 import { OFFERINGs } from "../- ReUseable/OFFERINGs";
 
 // ---------- DESIGNING ----------

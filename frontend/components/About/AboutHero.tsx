@@ -1,3 +1,4 @@
+"use client";
 import { HERO } from "../- ReUseable/HERO";
 
 export const About_Hero = () => (

@@ -1,3 +1,4 @@
+"use client";
 import { PROJECTs } from "@/components/- ReUseable/PROJECTs";
 
 // ---------- DESIGNING ----------

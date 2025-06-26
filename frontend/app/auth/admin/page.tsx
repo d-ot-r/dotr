@@ -1,3 +1,4 @@
+"use client";
 import { Dashboard } from "@/components/Admin/Dashboard";
 
 const Admin = () => {

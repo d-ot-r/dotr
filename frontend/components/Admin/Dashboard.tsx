@@ -1,3 +1,4 @@
+"use client";
 import Grid from "../Home/Grid";
 
 export const Dashboard = () => {

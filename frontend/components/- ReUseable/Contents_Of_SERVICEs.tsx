@@ -1,3 +1,4 @@
+"use client";
 import { IconPencil } from "@tabler/icons-react";
 import { Background_Gradient } from "../ui/Background_Gradient";
 import { OFFERINGs_CardProps } from "./OFFERINGs";

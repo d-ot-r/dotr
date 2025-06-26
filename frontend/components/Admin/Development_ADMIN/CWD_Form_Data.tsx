@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect } from "react";
 import { FORM_Data_Card } from "../../- ReUseable/FORM_Data_Card";
 

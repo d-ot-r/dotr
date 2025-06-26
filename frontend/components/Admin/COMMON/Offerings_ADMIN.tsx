@@ -1,3 +1,4 @@
+"use client";
 import { OFFERINGs } from "@/components/- ReUseable/OFFERINGs";
 
 // ---------- DESIGNING ----------

@@ -1,3 +1,4 @@
+"use client";
 import { IMPORTANCE } from "../- ReUseable/IMPORTANCE";
 
 // ---------- DESIGNING ----------
