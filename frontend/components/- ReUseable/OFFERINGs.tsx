@@ -187,10 +187,10 @@ export const OFFERINGs = ({
   }, [department, category]);
 
   const handleDelete = async (_id: string) => {
-    const confirmed =
-      typeof window !== "undefined" &&
-      window.confirm("Are you sure you want to delete this offering?");
-    if (!confirmed) return;
+    // const confirmed =
+    //   typeof window !== "undefined" &&
+    //   window.confirm("Are you sure you want to delete this offering?");
+    // if (!confirmed) return;
 
     try {
       const res = await fetch(

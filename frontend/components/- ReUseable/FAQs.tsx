@@ -266,10 +266,10 @@ export const FAQs = ({
   };
 
   const handleDelete = async (_id: string) => {
-    const confirmed =
-      typeof window !== "undefined" &&
-      window.confirm("Are you sure you want to delete this FAQ?");
-    if (!confirmed) return;
+    // const confirmed =
+    //   typeof window !== "undefined" &&
+    //   window.confirm("Are you sure you want to delete this FAQ?");
+    // if (!confirmed) return;
 
     try {
       const res = await fetch(

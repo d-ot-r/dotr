@@ -182,10 +182,10 @@ export const Why_DOTR = ({
   }, [department, category, useLocalData]);
 
   const handleDelete = async (_id: string) => {
-    const confirmed =
-      typeof window !== "undefined" &&
-      window.confirm("Are you sure you want to delete this Why Choose DOTR?");
-    if (!confirmed) return;
+    // const confirmed =
+    //   typeof window !== "undefined" &&
+    //   window.confirm("Are you sure you want to delete this Why Choose DOTR?");
+    // if (!confirmed) return;
 
     try {
       const res = await fetch(

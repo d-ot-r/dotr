@@ -267,10 +267,10 @@ export const ED_Form_Data: React.FC = () => {
   };
 
   const handleDelete = async (id: string) => {
-    const confirm =
-      typeof window !== "undefined" &&
-      window.confirm("Are you sure you want to delete this form?");
-    if (!confirm) return;
+    // const confirm =
+    //   typeof window !== "undefined" &&
+    //   window.confirm("Are you sure you want to delete this form?");
+    // if (!confirm) return;
 
     console.log(id);
     try {
