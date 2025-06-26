@@ -1,4 +1,6 @@
-"use client";
+export const dynamic = "force-dynamic";
+
+("use client");
 
 import { HERO_Of_Home } from "@/components/Home/HERO_Of_Home";
 import Grid from "@/components/Home/Grid";
