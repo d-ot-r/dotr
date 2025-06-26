@@ -1,6 +1,6 @@
 export const dynamic = "force-dynamic";
 
-("use client");
+// ("use client");
 import { Dashboard } from "@/components/Admin/Dashboard";
 
 const Admin = () => {
