@@ -120,26 +120,23 @@ export default function AdminLayout({
     return pathname === href;
   }
 
-  useEffect(() => {
-    const handleLogout = async () => {
-      try {
-        const res = await fetch("/api/logout", {
-          method: "POST",
-          credentials: "include",
-        });
+  const handleLogout = async () => {
+    try {
+      const res = await fetch("/api/logout", {
+        method: "POST",
+        credentials: "include",
+      });
 
-        if (res.ok) {
-          // Redirect to sign-in or home page
-          router.push("/auth/signin");
-        } else {
-          console.error("Logout failed");
-        }
-      } catch (err) {
-        console.error("Logout error:", err);
+      if (res.ok) {
+        // Redirect to sign-in or home page
+        router.push("/auth/signin");
+      } else {
+        console.error("Logout failed");
       }
-    };
-    handleLogout();
-  }, []);
+    } catch (err) {
+      console.error("Logout error:", err);
+    }
+  };
 
   return (
     <div
