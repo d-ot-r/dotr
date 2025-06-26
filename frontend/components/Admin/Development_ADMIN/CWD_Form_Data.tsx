@@ -264,9 +264,9 @@ export const CWD_Form_Data: React.FC = () => {
   };
 
   const handleDelete = async (id: string) => {
-    const confirm = window.confirm(
-      "Are you sure you want to delete this form?"
-    );
+    const confirm =
+      typeof window !== "undefined" &&
+      window.confirm("Are you sure you want to delete this form?");
     if (!confirm) return;
 
     console.log(id);

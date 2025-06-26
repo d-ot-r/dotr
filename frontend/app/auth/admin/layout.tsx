@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/Sidebar";
 import {
   IconArrowLeft,
@@ -120,23 +120,26 @@ export default function AdminLayout({
     return pathname === href;
   }
 
-  const handleLogout = async () => {
-    try {
-      const res = await fetch("/api/logout", {
-        method: "POST",
-        credentials: "include",
-      });
+  useEffect(() => {
+    const handleLogout = async () => {
+      try {
+        const res = await fetch("/api/logout", {
+          method: "POST",
+          credentials: "include",
+        });
 
-      if (res.ok) {
-        // Redirect to sign-in or home page
-        window.location.href = "/auth/signin";
-      } else {
-        console.error("Logout failed");
+        if (res.ok) {
+          // Redirect to sign-in or home page
+          window.location.href = "/auth/signin";
+        } else {
+          console.error("Logout failed");
+        }
+      } catch (err) {
+        console.error("Logout error:", err);
       }
-    } catch (err) {
-      console.error("Logout error:", err);
-    }
-  };
+    };
+    handleLogout();
+  }, []);
 
   return (
     <div

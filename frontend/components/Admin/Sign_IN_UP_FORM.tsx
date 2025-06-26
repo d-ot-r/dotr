@@ -164,7 +164,6 @@ export const Sign_IN_FORM = () => {
       if (response.ok) {
         const result = await response.json();
         console.log("✅ Submitted successfully:", result);
-        // window.location.href = "/auth/admin";
         router.push("admin");
         // router.replace("/auth/admin");
       } else {

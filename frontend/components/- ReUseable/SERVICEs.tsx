@@ -251,9 +251,9 @@ export const SERVICEs: React.FC<ServicesProps> = ({
   }, [group]);
 
   const handleDelete = async (_id: string) => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this service?"
-    );
+    const confirmed =
+      typeof window !== "undefined" &&
+      window.confirm("Are you sure you want to delete this service?");
     if (!confirmed) return;
 
     try {

@@ -79,9 +79,9 @@ export const HERO = ({
   };
 
   const handleDelete = async (id: string) => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this FAQ?"
-    );
+    const confirmed =
+      typeof window !== "undefined" &&
+      window.confirm("Are you sure you want to delete this FAQ?");
     if (!confirmed) return;
 
     try {
@@ -439,7 +439,7 @@ export const HERO = ({
 //   };
 
 //   const handleDelete = async (id: string) => {
-//     const confirmed = window.confirm(
+//     const confirmed = typeof window !== "undefined" && window.confirm(
 //       "Are you sure you want to delete this FAQ?"
 //     );
 //     if (!confirmed) return;
@@ -751,7 +751,7 @@ export const HERO = ({
 //   };
 
 //   const handleDelete = async (id: string) => {
-//     const confirmed = window.confirm(
+//     const confirmed = typeof window !== "undefined" && window.confirm(
 //       "Are you sure you want to delete this FAQ?"
 //     );
 //     if (!confirmed) return;
