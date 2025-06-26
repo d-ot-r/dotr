@@ -149,7 +149,25 @@ export default function AdminLayout({
         <SidebarBody className="justify-between gap-10">
           <div className="flex flex-1 flex-col overflow-x-hidden overflow-y-auto">
             {/* Your Logo component */}
-            {open ? <Logo /> : <LogoIcon />}
+            {open ? (
+              <a
+                href="#"
+                className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-black"
+              >
+                <div className="h-5 w-6 shrink-0 rounded-tl-lg rounded-tr-sm rounded-br-lg rounded-bl-sm bg-black dark:bg-white" />
+                <span className="font-medium whitespace-pre text-black dark:text-white">
+                  dotr - DHINOJA OmniTech Resolutions
+                </span>
+              </a>
+            ) : (
+              <Image
+                alt="DOTR Logo"
+                width={100}
+                height={100}
+                src="/images/dotr_black_big.png"
+                className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-black h-5 w-6 shrink-0 rounded-tl-lg rounded-tr-sm rounded-br-lg rounded-bl-sm bg-black dark:bg-white"
+              />
+            )}
             <div className="mt-8 flex flex-col gap-2">
               {links.map((link, idx) => (
                 <SidebarLink
@@ -200,29 +218,3 @@ export default function AdminLayout({
     </div>
   );
 }
-
-export const Logo = () => {
-  return (
-    <a
-      href="#"
-      className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-black"
-    >
-      <div className="h-5 w-6 shrink-0 rounded-tl-lg rounded-tr-sm rounded-br-lg rounded-bl-sm bg-black dark:bg-white" />
-      <span className="font-medium whitespace-pre text-black dark:text-white">
-        dotr - DHINOJA OmniTech Resolutions
-      </span>
-    </a>
-  );
-};
-
-export const LogoIcon = () => {
-  return (
-    <Image
-      alt="DOTR Logo"
-      width={100}
-      height={100}
-      src="/images/dotr_black_big.png"
-      className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-black h-5 w-6 shrink-0 rounded-tl-lg rounded-tr-sm rounded-br-lg rounded-bl-sm bg-black dark:bg-white"
-    />
-  );
-};
