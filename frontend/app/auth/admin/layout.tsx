@@ -130,7 +130,7 @@ export default function AdminLayout({
 
         if (res.ok) {
           // Redirect to sign-in or home page
-          window.location.href = "/auth/signin";
+          router.push("/auth/signin");
         } else {
           console.error("Logout failed");
         }
