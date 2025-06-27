@@ -113,7 +113,7 @@ export function FORM_Of_Ecommerce_Development() {
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/form/ecommerce-development/submit`,
+        `https://dotr-backend.onrender.com/api/form/ecommerce-development/submit`,
         {
           method: "POST",
           headers: {
