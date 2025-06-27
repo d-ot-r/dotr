@@ -1,11 +1,11 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import { FAQs_Of_Designing_Model } from "../models/FAQs_Of_Services_Model";
 import { HERO_Of_Designing } from "../models/HERO_Of_Services_Model";
 import { IMPORTANCE_Of_Designing_Model } from "../models/IMPORTANCE_Of_Services_Model";
+import { OFFERINGs_Of_Designing_Model } from "../models/OFFERINGs_Of_Services_Model";
+import { PROJECTs_Of_Designing } from "../models/PROJECTs_Of_Services_Model";
 import { Designing_Services_Model } from "../models/SERVICEs_Of_Departments";
 import { Why_DOTR_For_Designing } from "../models/Why_DOTR_For_Services_Model";
-import { PROJECTs_Of_Designing } from "../models/PROJECTs_Of_Services_Model";
-import { OFFERINGs_Of_Designing_Model } from "../models/OFFERINGs_Of_Services_Model";
 
 //#region FAQs
 export const get_Designing_FAQs_By_Category = async (
@@ -74,11 +74,7 @@ export const get_Designing_Offerings_By_Category = async (
   }
 };
 
-export const add_Designing_Offerings = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const add_Designing_Offerings = async (req: Request, res: Response) => {
   try {
     const { category, offerings } = req.body;
 
@@ -130,14 +126,12 @@ export const add_Designing_Offerings = async (
   } catch (error) {
     console.error("Error adding offerings:", error);
     res.status(500).json({ message: "Server error." });
-    next(error);
   }
 };
 
 export const update_Designing_Offering_By_ID = async (
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ) => {
   try {
     const { category, offeringId } = req.params;
@@ -181,8 +175,7 @@ export const update_Designing_Offering_By_ID = async (
 
 export const delete_Designing_Offerings_By_ID = async (
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ) => {
   try {
     const { category, offeringId } = req.params;
@@ -232,7 +225,6 @@ export const delete_Designing_Offerings_By_ID = async (
   } catch (error) {
     console.error("Error deleting offering:", error);
     res.status(500).json({ message: "Server error." });
-    next(error);
   }
 };
 
@@ -275,10 +267,7 @@ export const get_Designing_Projects_By_Category = async (
 //#endregion
 
 //#region Services
-export const get_All_Designing_Services = async (
-  req: Request,
-  res: Response
-) => {
+export const get_All_Designing_Services = async (res: Response) => {
   try {
     const services = await Designing_Services_Model.find(); // Fetch all services from DB
     res.status(200).json(services); // Send the services as JSON

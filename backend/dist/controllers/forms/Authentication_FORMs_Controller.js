@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.authenticate_User = void 0;
 const Authentication_Model_1 = require("../../models/auth/Authentication_Model");
-const authenticate_User = async (req, res, next) => {
+const authenticate_User = async (req, res) => {
     try {
         const { email, password } = req.body;
         if (!email || !password) {
@@ -15,13 +15,6 @@ const authenticate_User = async (req, res, next) => {
         if (user.password !== password) {
             return res.status(401).json({ message: "Invalid email or password" });
         }
-        // const token = jwt.sign(
-        //   { id: user._id, email: user.email },
-        //   process.env.JWT_SECRET!,
-        //   {
-        //     expiresIn: "1h",
-        //   }
-        // );
         res.cookie("token", user._id.toString(), {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",

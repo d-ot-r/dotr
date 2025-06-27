@@ -4,16 +4,15 @@ exports.get_Designing_WhyDOTR_By_Category = exports.get_Designing_Services_By_Gr
 const FAQs_Of_Services_Model_1 = require("../models/FAQs_Of_Services_Model");
 const HERO_Of_Services_Model_1 = require("../models/HERO_Of_Services_Model");
 const IMPORTANCE_Of_Services_Model_1 = require("../models/IMPORTANCE_Of_Services_Model");
+const OFFERINGs_Of_Services_Model_1 = require("../models/OFFERINGs_Of_Services_Model");
+const PROJECTs_Of_Services_Model_1 = require("../models/PROJECTs_Of_Services_Model");
 const SERVICEs_Of_Departments_1 = require("../models/SERVICEs_Of_Departments");
 const Why_DOTR_For_Services_Model_1 = require("../models/Why_DOTR_For_Services_Model");
-const PROJECTs_Of_Services_Model_1 = require("../models/PROJECTs_Of_Services_Model");
-const OFFERINGs_Of_Services_Model_1 = require("../models/OFFERINGs_Of_Services_Model");
-//#region FAQs
 const get_Designing_FAQs_By_Category = async (req, res) => {
     try {
         const { category } = req.params;
-        const services = await FAQs_Of_Services_Model_1.FAQs_Of_Designing_Model.find({ category: category }); // Fetch all services from DB
-        res.status(200).json(services); // Send the services as JSON
+        const services = await FAQs_Of_Services_Model_1.FAQs_Of_Designing_Model.find({ category: category });
+        res.status(200).json(services);
     }
     catch (error) {
         console.error("Error fetching services:", error);
@@ -21,13 +20,11 @@ const get_Designing_FAQs_By_Category = async (req, res) => {
     }
 };
 exports.get_Designing_FAQs_By_Category = get_Designing_FAQs_By_Category;
-//#endregion
-//#region Hero
 const get_Designing_Hero_By_Category = async (req, res) => {
     try {
         const { category } = req.params;
-        const hero = await HERO_Of_Services_Model_1.HERO_Of_Designing.find({ category: category }); // Fetch all services from DB
-        res.status(200).json(hero); // Send the services as JSON
+        const hero = await HERO_Of_Services_Model_1.HERO_Of_Designing.find({ category: category });
+        res.status(200).json(hero);
     }
     catch (error) {
         console.error("Error fetching services:", error);
@@ -35,8 +32,6 @@ const get_Designing_Hero_By_Category = async (req, res) => {
     }
 };
 exports.get_Designing_Hero_By_Category = get_Designing_Hero_By_Category;
-//#endregion
-//#region Importance
 const get_Designing_Importance_By_Category = async (req, res) => {
     try {
         const { category } = req.params;
@@ -50,8 +45,6 @@ const get_Designing_Importance_By_Category = async (req, res) => {
     }
 };
 exports.get_Designing_Importance_By_Category = get_Designing_Importance_By_Category;
-//#endregion
-//#region Offerings
 const get_Designing_Offerings_By_Category = async (req, res) => {
     try {
         const { category } = req.params;
@@ -65,7 +58,7 @@ const get_Designing_Offerings_By_Category = async (req, res) => {
     }
 };
 exports.get_Designing_Offerings_By_Category = get_Designing_Offerings_By_Category;
-const add_Designing_Offerings = async (req, res, next) => {
+const add_Designing_Offerings = async (req, res) => {
     try {
         const { category, offerings } = req.body;
         if (!category || !Array.isArray(offerings)) {
@@ -77,7 +70,6 @@ const add_Designing_Offerings = async (req, res, next) => {
             category,
         });
         if (categoryDoc) {
-            // Filter out duplicates
             const newOfferings = offerings.filter((offering) => {
                 return !categoryDoc.offerings.some((existing) => existing.id === offering.id);
             });
@@ -95,7 +87,6 @@ const add_Designing_Offerings = async (req, res, next) => {
             });
         }
         else {
-            // Create new category with all offerings
             const newCategory = new OFFERINGs_Of_Services_Model_1.OFFERINGs_Of_Designing_Model({
                 category,
                 offerings,
@@ -109,11 +100,10 @@ const add_Designing_Offerings = async (req, res, next) => {
     catch (error) {
         console.error("Error adding offerings:", error);
         res.status(500).json({ message: "Server error." });
-        next(error);
     }
 };
 exports.add_Designing_Offerings = add_Designing_Offerings;
-const update_Designing_Offering_By_ID = async (req, res, next) => {
+const update_Designing_Offering_By_ID = async (req, res) => {
     try {
         const { category, offeringId } = req.params;
         const { title, tagline, description, icon } = req.body;
@@ -144,7 +134,7 @@ const update_Designing_Offering_By_ID = async (req, res, next) => {
     }
 };
 exports.update_Designing_Offering_By_ID = update_Designing_Offering_By_ID;
-const delete_Designing_Offerings_By_ID = async (req, res, next) => {
+const delete_Designing_Offerings_By_ID = async (req, res) => {
     try {
         const { category, offeringId } = req.params;
         if (!category || !offeringId) {
@@ -152,14 +142,12 @@ const delete_Designing_Offerings_By_ID = async (req, res, next) => {
                 .status(400)
                 .json({ message: "Add category and offeringId..." });
         }
-        // Check if category exists
         const categoryDoc = await OFFERINGs_Of_Services_Model_1.OFFERINGs_Of_Designing_Model.findOne({
             category,
         });
         if (!categoryDoc) {
             return res.status(404).json({ message: "Category not found..." });
         }
-        // Check if offering with _id exists in the category
         const offeringExists = categoryDoc.offerings.some((offering) => offering._id.toString() === offeringId);
         if (!offeringExists) {
             return res
@@ -180,19 +168,16 @@ const delete_Designing_Offerings_By_ID = async (req, res, next) => {
     catch (error) {
         console.error("Error deleting offering:", error);
         res.status(500).json({ message: "Server error." });
-        next(error);
     }
 };
 exports.delete_Designing_Offerings_By_ID = delete_Designing_Offerings_By_ID;
-//#endregion
-//#region Portfolio
 const get_All_Designing_Projects = async (req, res) => {
     try {
         const { group } = req.params;
         const designing_projects = await PROJECTs_Of_Services_Model_1.PROJECTs_Of_Designing.find({
             group: group,
-        }); // Fetch all services from DB
-        res.status(200).json(designing_projects); // Send the services as JSON
+        });
+        res.status(200).json(designing_projects);
     }
     catch (error) {
         console.error("Error fetching services:", error);
@@ -207,8 +192,8 @@ const get_Designing_Projects_By_Category = async (req, res) => {
         const designing_projects = await PROJECTs_Of_Services_Model_1.PROJECTs_Of_Designing.find({
             group: group,
             category: category,
-        }); // Fetch all services from DB
-        res.status(200).json(designing_projects); // Send the services as JSON
+        });
+        res.status(200).json(designing_projects);
     }
     catch (error) {
         console.error("Error fetching services:", error);
@@ -216,12 +201,10 @@ const get_Designing_Projects_By_Category = async (req, res) => {
     }
 };
 exports.get_Designing_Projects_By_Category = get_Designing_Projects_By_Category;
-//#endregion
-//#region Services
-const get_All_Designing_Services = async (req, res) => {
+const get_All_Designing_Services = async (res) => {
     try {
-        const services = await SERVICEs_Of_Departments_1.Designing_Services_Model.find(); // Fetch all services from DB
-        res.status(200).json(services); // Send the services as JSON
+        const services = await SERVICEs_Of_Departments_1.Designing_Services_Model.find();
+        res.status(200).json(services);
     }
     catch (error) {
         console.error("Error fetching services:", error);
@@ -229,7 +212,6 @@ const get_All_Designing_Services = async (req, res) => {
     }
 };
 exports.get_All_Designing_Services = get_All_Designing_Services;
-// Get services by category
 const get_Designing_Services_By_Group = async (req, res) => {
     try {
         const { group } = req.params;
@@ -243,15 +225,13 @@ const get_Designing_Services_By_Group = async (req, res) => {
     }
 };
 exports.get_Designing_Services_By_Group = get_Designing_Services_By_Group;
-//#endregion
-//#region Why-DOTR
 const get_Designing_WhyDOTR_By_Category = async (req, res) => {
     try {
         const { category } = req.params;
         const services = await Why_DOTR_For_Services_Model_1.Why_DOTR_For_Designing.find({
             category: category,
-        }); // Fetch all services from DB
-        res.status(200).json(services); // Send the services as JSON
+        });
+        res.status(200).json(services);
     }
     catch (error) {
         console.error("Error fetching services:", error);
@@ -259,4 +239,3 @@ const get_Designing_WhyDOTR_By_Category = async (req, res) => {
     }
 };
 exports.get_Designing_WhyDOTR_By_Category = get_Designing_WhyDOTR_By_Category;
-//#endregion

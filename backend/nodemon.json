@@ -1,5 +1,6 @@
 {
-  "watch": ["."],
+  "watch": ["backend", "server.ts"],
   "ext": "ts",
+  "ignore": ["dist"],
   "exec": "ts-node server.ts"
 }

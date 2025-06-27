@@ -1,6 +1,5 @@
 // models/designing/DOTRForDesigningModel.ts
-import { Schema, model } from "mongoose";
-import { timeStamp } from "console";
+import { Schema } from "mongoose";
 import { Development_Connection } from "../config/Develpoment_DB";
 import { Designing_Connection } from "../config/Designing_DB";
 

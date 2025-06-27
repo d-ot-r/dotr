@@ -10,7 +10,7 @@ const Logo_Form_Schema = new mongoose_1.Schema({
     phone: { type: String, required: true },
     company: { type: String, required: true },
     tagline: { type: String },
-    colors: { type: [String], required: true }, // Array of selected colors
+    colors: { type: [String], required: true },
     industry: { type: String, required: true },
     logoStyle: { type: String, required: true },
     message: { type: String },

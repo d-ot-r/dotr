@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import { Request, Response } from "express";
+import { Response } from "express";
 import DesigningRoutes from "./routes/DesigningRoutes";
 import DevelopmentRoutes from "./routes/DevelopmentRoutes";
 import FormRoutes from "./routes/forms/FormRoutes";
@@ -22,7 +22,7 @@ app.use(
 
 app.use(express.json());
 
-app.get("/", (req: Request, res: Response) => {
+app.get("/", (res: Response) => {
   res.send("DOTR Backend is Running!");
 });
 

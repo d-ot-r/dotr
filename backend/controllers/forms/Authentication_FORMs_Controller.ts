@@ -1,13 +1,8 @@
-import jwt from "jsonwebtoken";
 // import bcrypt from "bcrypt";
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { Authentication_Form_Model } from "../../models/auth/Authentication_Model";
 
-export const authenticate_User = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const authenticate_User = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
 

@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import { Schema } from "mongoose";
 import { Development_Connection } from "../config/Develpoment_DB";
 import { Designing_Connection } from "../config/Designing_DB";
 

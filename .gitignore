@@ -4,6 +4,7 @@ backend/node_modules
 
 # Ignore .next build folder (Next.js)
 frontend/.next
+backend/dist
 
 # Optional: Ignore environment variables
 frontend/.env

@@ -1,5 +1,5 @@
 // models/designing/Designing_Services_Model.ts
-import { Schema, model } from "mongoose";
+import { Schema } from "mongoose";
 import { Development_Connection } from "../config/Develpoment_DB";
 import { Designing_Connection } from "../config/Designing_DB";
 

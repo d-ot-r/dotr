@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import { FAQs_Of_Development_Model } from "../models/FAQs_Of_Services_Model";
 import { HERO_Of_Development } from "../models/HERO_Of_Services_Model";
 import { IMPORTANCE_Of_Development_Model } from "../models/IMPORTANCE_Of_Services_Model";
@@ -24,11 +24,7 @@ export const get_Development_FAQs_By_Category = async (
   }
 };
 
-export const add_Development_FAQs = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const add_Development_FAQs = async (req: Request, res: Response) => {
   try {
     const { category, faqs } = req.body;
 
@@ -80,14 +76,12 @@ export const add_Development_FAQs = async (
   } catch (error) {
     console.error("Error adding faqs:", error);
     res.status(500).json({ message: "Server error." });
-    next(error);
   }
 };
 
 export const update_Development_FAQs_By_ID = async (
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ) => {
   try {
     const { category, faqId } = req.params;
@@ -142,8 +136,7 @@ export const update_Development_FAQs_By_ID = async (
 
 export const delete_Development_FAQs_By_ID = async (
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ) => {
   try {
     const { category, faqId } = req.params;
@@ -187,7 +180,6 @@ export const delete_Development_FAQs_By_ID = async (
   } catch (error) {
     console.error("Error deleting faq:", error);
     res.status(500).json({ message: "Server error." });
-    next(error);
   }
 };
 
@@ -208,11 +200,7 @@ export const get_Development_Hero_By_Category = async (
   }
 };
 
-export const add_Development_HERO = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const add_Development_HERO = async (req: Request, res: Response) => {
   try {
     const { category, title, tagline, description, image } = req.body;
 
@@ -250,8 +238,7 @@ export const add_Development_HERO = async (
 
 export const update_Development_HERO_By_ID = async (
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ) => {
   try {
     const { category, heroId } = req.params;
@@ -280,8 +267,7 @@ export const update_Development_HERO_By_ID = async (
 
 export const delete_Development_HERO_By_ID = async (
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ) => {
   try {
     const { category, heroId } = req.params;
@@ -309,7 +295,6 @@ export const delete_Development_HERO_By_ID = async (
   } catch (error) {
     console.error("Error deleting hero:", error);
     res.status(500).json({ message: "Server error." });
-    next(error);
   }
 };
 
@@ -333,8 +318,7 @@ export const get_Development_Importance_By_Category = async (
 
 export const add_Development_Importance = async (
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ) => {
   try {
     const {
@@ -390,8 +374,7 @@ export const add_Development_Importance = async (
 
 export const update_Development_Importance_By_ID = async (
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ) => {
   try {
     const { category, importanceId } = req.params;
@@ -428,8 +411,7 @@ export const update_Development_Importance_By_ID = async (
 
 export const delete_Development_Importance_By_ID = async (
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ) => {
   try {
     const { category, importanceId } = req.params;
@@ -488,8 +470,7 @@ export const get_Development_Offerings_By_Category = async (
 
 export const add_Development_Offerings = async (
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ) => {
   try {
     const { category, offerings } = req.body;
@@ -542,14 +523,12 @@ export const add_Development_Offerings = async (
   } catch (error) {
     console.error("Error adding offerings:", error);
     res.status(500).json({ message: "Server error." });
-    next(error);
   }
 };
 
 export const update_Development_Offerings_By_ID = async (
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ) => {
   try {
     const { category, offeringId } = req.params;
@@ -594,8 +573,7 @@ export const update_Development_Offerings_By_ID = async (
 
 export const delete_Development_Offerings_By_ID = async (
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ) => {
   try {
     const { category, offeringId } = req.params;
@@ -645,7 +623,6 @@ export const delete_Development_Offerings_By_ID = async (
   } catch (error) {
     console.error("Error deleting offering:", error);
     res.status(500).json({ message: "Server error." });
-    next(error);
   }
 };
 
@@ -688,10 +665,7 @@ export const get_Development_Projects_By_Category = async (
 //#endregion
 
 //#region Services
-export const get_All_Development_Services = async (
-  req: Request,
-  res: Response
-) => {
+export const get_All_Development_Services = async (res: Response) => {
   try {
     const services = await Development_Services_Model.find(); // Fetch all services from DB
     res.status(200).json(services); // Send the services as JSON
@@ -716,11 +690,7 @@ export const get_Development_Services_By_Group = async (
   }
 };
 
-export const add_Development_Services = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const add_Development_Services = async (req: Request, res: Response) => {
   try {
     const { group, services } = req.body;
 
@@ -772,14 +742,12 @@ export const add_Development_Services = async (
   } catch (error) {
     console.error("Error adding services:", error);
     res.status(500).json({ message: "Server error." });
-    next(error);
   }
 };
 
 export const update_Development_Services_By_ID = async (
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ) => {
   try {
     const { group, serviceId } = req.params;
@@ -821,8 +789,7 @@ export const update_Development_Services_By_ID = async (
 
 export const delete_Development_Services_By_ID = async (
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ) => {
   try {
     const { group, serviceId } = req.params;
@@ -873,11 +840,7 @@ export const get_Development_WhyDOTR_By_Category = async (
   }
 };
 
-export const add_Development_WhyDOTR = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const add_Development_WhyDOTR = async (req: Request, res: Response) => {
   try {
     const { category, reasons } = req.body;
 
@@ -939,14 +902,12 @@ export const add_Development_WhyDOTR = async (
   } catch (error) {
     console.error("Error adding reasons:", error);
     res.status(500).json({ message: "Server error." });
-    next(error);
   }
 };
 
 export const update_Development_WhyDOTR_By_ID = async (
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ) => {
   try {
     const { category, whyDOTRId } = req.params;
@@ -988,8 +949,7 @@ export const update_Development_WhyDOTR_By_ID = async (
 
 export const delete_Development_WhyDOTR_By_ID = async (
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ) => {
   try {
     const { category, whyDOTRId } = req.params;
@@ -1037,7 +997,6 @@ export const delete_Development_WhyDOTR_By_ID = async (
   } catch (error) {
     console.error("Error deleting whyDotr:", error);
     res.status(500).json({ message: "Server error." });
-    next(error);
   }
 };
 

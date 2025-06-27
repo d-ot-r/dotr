@@ -8,14 +8,13 @@ const OFFERINGs_Of_Services_Model_1 = require("../models/OFFERINGs_Of_Services_M
 const SERVICEs_Of_Departments_1 = require("../models/SERVICEs_Of_Departments");
 const Why_DOTR_For_Services_Model_1 = require("../models/Why_DOTR_For_Services_Model");
 const PROJECTs_Of_Services_Model_1 = require("../models/PROJECTs_Of_Services_Model");
-//#region FAQs
 const get_Development_FAQs_By_Category = async (req, res) => {
     try {
         const { category } = req.params;
         const services = await FAQs_Of_Services_Model_1.FAQs_Of_Development_Model.find({
             category: category,
-        }); // Fetch all services from DB
-        res.status(200).json(services); // Send the services as JSON
+        });
+        res.status(200).json(services);
     }
     catch (error) {
         console.error("Error fetching services:", error);
@@ -23,7 +22,7 @@ const get_Development_FAQs_By_Category = async (req, res) => {
     }
 };
 exports.get_Development_FAQs_By_Category = get_Development_FAQs_By_Category;
-const add_Development_FAQs = async (req, res, next) => {
+const add_Development_FAQs = async (req, res) => {
     try {
         const { category, faqs } = req.body;
         if (!category || !Array.isArray(faqs)) {
@@ -35,7 +34,6 @@ const add_Development_FAQs = async (req, res, next) => {
             category,
         });
         if (categoryDoc) {
-            // Filter out duplicates
             const newFaqs = faqs.filter((offering) => {
                 return !categoryDoc.faqs.some((existing) => existing.id === offering.id);
             });
@@ -53,7 +51,6 @@ const add_Development_FAQs = async (req, res, next) => {
             });
         }
         else {
-            // Create new category with all faqs
             const newCategory = new FAQs_Of_Services_Model_1.FAQs_Of_Development_Model({
                 category,
                 faqs,
@@ -67,11 +64,10 @@ const add_Development_FAQs = async (req, res, next) => {
     catch (error) {
         console.error("Error adding faqs:", error);
         res.status(500).json({ message: "Server error." });
-        next(error);
     }
 };
 exports.add_Development_FAQs = add_Development_FAQs;
-const update_Development_FAQs_By_ID = async (req, res, next) => {
+const update_Development_FAQs_By_ID = async (req, res) => {
     try {
         const { category, faqId } = req.params;
         const { id, title, description, ctaText, ctaLink, icon, intro, points, outro, } = req.body;
@@ -103,20 +99,18 @@ const update_Development_FAQs_By_ID = async (req, res, next) => {
     }
 };
 exports.update_Development_FAQs_By_ID = update_Development_FAQs_By_ID;
-const delete_Development_FAQs_By_ID = async (req, res, next) => {
+const delete_Development_FAQs_By_ID = async (req, res) => {
     try {
         const { category, faqId } = req.params;
         if (!category || !faqId) {
             return res.status(400).json({ message: "Add category and faqId..." });
         }
-        // Check if category exists
         const categoryDoc = await FAQs_Of_Services_Model_1.FAQs_Of_Development_Model.findOne({
             category,
         });
         if (!categoryDoc) {
             return res.status(404).json({ message: "Category not found..." });
         }
-        // Check if faq with _id exists in the category
         const faqExists = categoryDoc.faqs.some((faq) => faq._id.toString() === faqId);
         if (!faqExists) {
             return res.status(404).json({ message: "faq not found in category." });
@@ -133,17 +127,14 @@ const delete_Development_FAQs_By_ID = async (req, res, next) => {
     catch (error) {
         console.error("Error deleting faq:", error);
         res.status(500).json({ message: "Server error." });
-        next(error);
     }
 };
 exports.delete_Development_FAQs_By_ID = delete_Development_FAQs_By_ID;
-//#endregion
-//#region Hero
 const get_Development_Hero_By_Category = async (req, res) => {
     try {
         const { category } = req.params;
-        const hero = await HERO_Of_Services_Model_1.HERO_Of_Development.find({ category: category }); // Fetch all services from DB
-        res.status(200).json(hero); // Send the services as JSON
+        const hero = await HERO_Of_Services_Model_1.HERO_Of_Development.find({ category: category });
+        res.status(200).json(hero);
     }
     catch (error) {
         console.error("Error fetching services:", error);
@@ -151,7 +142,7 @@ const get_Development_Hero_By_Category = async (req, res) => {
     }
 };
 exports.get_Development_Hero_By_Category = get_Development_Hero_By_Category;
-const add_Development_HERO = async (req, res, next) => {
+const add_Development_HERO = async (req, res) => {
     try {
         const { category, title, tagline, description, image } = req.body;
         if (!category) {
@@ -182,7 +173,7 @@ const add_Development_HERO = async (req, res, next) => {
     }
 };
 exports.add_Development_HERO = add_Development_HERO;
-const update_Development_HERO_By_ID = async (req, res, next) => {
+const update_Development_HERO_By_ID = async (req, res) => {
     try {
         const { category, heroId } = req.params;
         const updates = req.body;
@@ -201,13 +192,12 @@ const update_Development_HERO_By_ID = async (req, res, next) => {
     }
 };
 exports.update_Development_HERO_By_ID = update_Development_HERO_By_ID;
-const delete_Development_HERO_By_ID = async (req, res, next) => {
+const delete_Development_HERO_By_ID = async (req, res) => {
     try {
         const { category, heroId } = req.params;
         if (!category || !heroId) {
             return res.status(400).json({ message: "Add category and heroId..." });
         }
-        // Check if category exists
         const categoryDoc = await HERO_Of_Services_Model_1.HERO_Of_Development.findOne({ category });
         if (!categoryDoc) {
             return res.status(404).json({ message: "Category not found..." });
@@ -224,12 +214,9 @@ const delete_Development_HERO_By_ID = async (req, res, next) => {
     catch (error) {
         console.error("Error deleting hero:", error);
         res.status(500).json({ message: "Server error." });
-        next(error);
     }
 };
 exports.delete_Development_HERO_By_ID = delete_Development_HERO_By_ID;
-//#endregion
-//#region Importance
 const get_Development_Importance_By_Category = async (req, res) => {
     try {
         const { category } = req.params;
@@ -243,7 +230,7 @@ const get_Development_Importance_By_Category = async (req, res) => {
     }
 };
 exports.get_Development_Importance_By_Category = get_Development_Importance_By_Category;
-const add_Development_Importance = async (req, res, next) => {
+const add_Development_Importance = async (req, res) => {
     try {
         const { category, heading, subheading, paragraphs, featureheading, features, } = req.body;
         if (!category) {
@@ -257,16 +244,6 @@ const add_Development_Importance = async (req, res, next) => {
                 .status(409)
                 .json({ message: "Importance already exists for this category." });
         }
-        // if (
-        //   !category ||
-        //   !heading ||
-        //   !subheading ||
-        //   !paragraphs ||
-        //   !featureheading ||
-        //   !features
-        // ) {
-        //   return res.status(400).json({ message: "Missing or invalid fields." });
-        // }
         const newImportance = new IMPORTANCE_Of_Services_Model_1.IMPORTANCE_Of_Development_Model({
             category,
             heading,
@@ -284,7 +261,7 @@ const add_Development_Importance = async (req, res, next) => {
     }
 };
 exports.add_Development_Importance = add_Development_Importance;
-const update_Development_Importance_By_ID = async (req, res, next) => {
+const update_Development_Importance_By_ID = async (req, res) => {
     try {
         const { category, importanceId } = req.params;
         const updates = req.body;
@@ -310,7 +287,7 @@ const update_Development_Importance_By_ID = async (req, res, next) => {
     }
 };
 exports.update_Development_Importance_By_ID = update_Development_Importance_By_ID;
-const delete_Development_Importance_By_ID = async (req, res, next) => {
+const delete_Development_Importance_By_ID = async (req, res) => {
     try {
         const { category, importanceId } = req.params;
         if (!category || !importanceId) {
@@ -341,8 +318,6 @@ const delete_Development_Importance_By_ID = async (req, res, next) => {
     }
 };
 exports.delete_Development_Importance_By_ID = delete_Development_Importance_By_ID;
-//#endregion
-//#region Offerings
 const get_Development_Offerings_By_Category = async (req, res) => {
     try {
         const { category } = req.params;
@@ -356,7 +331,7 @@ const get_Development_Offerings_By_Category = async (req, res) => {
     }
 };
 exports.get_Development_Offerings_By_Category = get_Development_Offerings_By_Category;
-const add_Development_Offerings = async (req, res, next) => {
+const add_Development_Offerings = async (req, res) => {
     try {
         const { category, offerings } = req.body;
         if (!category || !Array.isArray(offerings)) {
@@ -368,7 +343,6 @@ const add_Development_Offerings = async (req, res, next) => {
             category,
         });
         if (categoryDoc) {
-            // Filter out duplicates
             const newOfferings = offerings.filter((offering) => {
                 return !categoryDoc.offerings.some((existing) => existing.title === offering.title);
             });
@@ -386,7 +360,6 @@ const add_Development_Offerings = async (req, res, next) => {
             });
         }
         else {
-            // Create new category with all offerings
             const newCategory = new OFFERINGs_Of_Services_Model_1.OFFERINGs_Of_Development_Model({
                 category,
                 offerings,
@@ -400,11 +373,10 @@ const add_Development_Offerings = async (req, res, next) => {
     catch (error) {
         console.error("Error adding offerings:", error);
         res.status(500).json({ message: "Server error." });
-        next(error);
     }
 };
 exports.add_Development_Offerings = add_Development_Offerings;
-const update_Development_Offerings_By_ID = async (req, res, next) => {
+const update_Development_Offerings_By_ID = async (req, res) => {
     try {
         const { category, offeringId } = req.params;
         const { id, title, tagline, description, icon } = req.body;
@@ -436,7 +408,7 @@ const update_Development_Offerings_By_ID = async (req, res, next) => {
     }
 };
 exports.update_Development_Offerings_By_ID = update_Development_Offerings_By_ID;
-const delete_Development_Offerings_By_ID = async (req, res, next) => {
+const delete_Development_Offerings_By_ID = async (req, res) => {
     try {
         const { category, offeringId } = req.params;
         if (!category || !offeringId) {
@@ -444,14 +416,12 @@ const delete_Development_Offerings_By_ID = async (req, res, next) => {
                 .status(400)
                 .json({ message: "Add category and offeringId..." });
         }
-        // Check if category exists
         const categoryDoc = await OFFERINGs_Of_Services_Model_1.OFFERINGs_Of_Development_Model.findOne({
             category,
         });
         if (!categoryDoc) {
             return res.status(404).json({ message: "Category not found..." });
         }
-        // Check if offering with _id exists in the category
         const offeringExists = categoryDoc.offerings.some((offering) => offering._id.toString() === offeringId);
         if (!offeringExists) {
             return res
@@ -472,19 +442,16 @@ const delete_Development_Offerings_By_ID = async (req, res, next) => {
     catch (error) {
         console.error("Error deleting offering:", error);
         res.status(500).json({ message: "Server error." });
-        next(error);
     }
 };
 exports.delete_Development_Offerings_By_ID = delete_Development_Offerings_By_ID;
-//#endregion
-//#region Portfolio
 const get_All_Development_Projects = async (req, res) => {
     try {
         const { group } = req.params;
         const development_projects = await PROJECTs_Of_Services_Model_1.PROJECTs_Of_Development.find({
             group: group,
-        }); // Fetch all services from DB
-        res.status(200).json(development_projects); // Send the services as JSON
+        });
+        res.status(200).json(development_projects);
     }
     catch (error) {
         console.error("Error fetching services:", error);
@@ -499,8 +466,8 @@ const get_Development_Projects_By_Category = async (req, res) => {
         const development_projects = await PROJECTs_Of_Services_Model_1.PROJECTs_Of_Development.find({
             group: group,
             category: category,
-        }); // Fetch all services from DB
-        res.status(200).json(development_projects); // Send the services as JSON
+        });
+        res.status(200).json(development_projects);
     }
     catch (error) {
         console.error("Error fetching services:", error);
@@ -508,12 +475,10 @@ const get_Development_Projects_By_Category = async (req, res) => {
     }
 };
 exports.get_Development_Projects_By_Category = get_Development_Projects_By_Category;
-//#endregion
-//#region Services
-const get_All_Development_Services = async (req, res) => {
+const get_All_Development_Services = async (res) => {
     try {
-        const services = await SERVICEs_Of_Departments_1.Development_Services_Model.find(); // Fetch all services from DB
-        res.status(200).json(services); // Send the services as JSON
+        const services = await SERVICEs_Of_Departments_1.Development_Services_Model.find();
+        res.status(200).json(services);
     }
     catch (error) {
         console.error("Error fetching services:", error);
@@ -534,7 +499,7 @@ const get_Development_Services_By_Group = async (req, res) => {
     }
 };
 exports.get_Development_Services_By_Group = get_Development_Services_By_Group;
-const add_Development_Services = async (req, res, next) => {
+const add_Development_Services = async (req, res) => {
     try {
         const { group, services } = req.body;
         if (!group || !Array.isArray(services)) {
@@ -546,7 +511,6 @@ const add_Development_Services = async (req, res, next) => {
             group,
         });
         if (groupDoc) {
-            // Filter out duplicates
             const newServices = services.filter((offering) => {
                 return !groupDoc.services.some((existing) => existing.title === offering.title);
             });
@@ -564,7 +528,6 @@ const add_Development_Services = async (req, res, next) => {
             });
         }
         else {
-            // Create new group with all services
             const newGroup = new SERVICEs_Of_Departments_1.Development_Services_Model({
                 group,
                 services,
@@ -578,11 +541,10 @@ const add_Development_Services = async (req, res, next) => {
     catch (error) {
         console.error("Error adding services:", error);
         res.status(500).json({ message: "Server error." });
-        next(error);
     }
 };
 exports.add_Development_Services = add_Development_Services;
-const update_Development_Services_By_ID = async (req, res, next) => {
+const update_Development_Services_By_ID = async (req, res) => {
     try {
         const { group, serviceId } = req.params;
         const { id, title, description, image, icons, link } = req.body;
@@ -611,7 +573,7 @@ const update_Development_Services_By_ID = async (req, res, next) => {
     }
 };
 exports.update_Development_Services_By_ID = update_Development_Services_By_ID;
-const delete_Development_Services_By_ID = async (req, res, next) => {
+const delete_Development_Services_By_ID = async (req, res) => {
     try {
         const { group, serviceId } = req.params;
         if (!group || !serviceId) {
@@ -636,15 +598,13 @@ const delete_Development_Services_By_ID = async (req, res, next) => {
     }
 };
 exports.delete_Development_Services_By_ID = delete_Development_Services_By_ID;
-//#endregion
-//#region Why-DOTR
 const get_Development_WhyDOTR_By_Category = async (req, res) => {
     try {
         const { category } = req.params;
         const services = await Why_DOTR_For_Services_Model_1.Why_DOTR_For_Development.find({
             category: category,
-        }); // Fetch all services from DB
-        res.status(200).json(services); // Send the services as JSON
+        });
+        res.status(200).json(services);
     }
     catch (error) {
         console.error("Error fetching services:", error);
@@ -652,7 +612,7 @@ const get_Development_WhyDOTR_By_Category = async (req, res) => {
     }
 };
 exports.get_Development_WhyDOTR_By_Category = get_Development_WhyDOTR_By_Category;
-const add_Development_WhyDOTR = async (req, res, next) => {
+const add_Development_WhyDOTR = async (req, res) => {
     try {
         const { category, reasons } = req.body;
         if (!category || !Array.isArray(reasons)) {
@@ -664,7 +624,6 @@ const add_Development_WhyDOTR = async (req, res, next) => {
             category,
         });
         if (categoryDoc) {
-            // Filter out duplicates
             const newWhyDOTR = reasons.filter((offering) => {
                 return !categoryDoc.reasons.some((existing) => existing.id === offering.id);
             });
@@ -674,14 +633,6 @@ const add_Development_WhyDOTR = async (req, res, next) => {
                     reasons: categoryDoc.reasons,
                 });
             }
-            // const exists = await Why_DOTR_For_Development.findOne({
-            //   category,
-            //   "reasons.id": req.body.id,
-            //   _id: { $ne: req.params.id },
-            // });
-            // if (exists) {
-            //   return res.status(400).json({ error: "Duplicate ID in this category" });
-            // }
             categoryDoc.reasons.push(...newWhyDOTR);
             const updatedDoc = await categoryDoc.save();
             return res.status(200).json({
@@ -691,7 +642,6 @@ const add_Development_WhyDOTR = async (req, res, next) => {
             });
         }
         else {
-            // Create new category with all reasons
             const newCategory = new Why_DOTR_For_Services_Model_1.Why_DOTR_For_Development({
                 category,
                 reasons,
@@ -705,11 +655,10 @@ const add_Development_WhyDOTR = async (req, res, next) => {
     catch (error) {
         console.error("Error adding reasons:", error);
         res.status(500).json({ message: "Server error." });
-        next(error);
     }
 };
 exports.add_Development_WhyDOTR = add_Development_WhyDOTR;
-const update_Development_WhyDOTR_By_ID = async (req, res, next) => {
+const update_Development_WhyDOTR_By_ID = async (req, res) => {
     try {
         const { category, whyDOTRId } = req.params;
         const { id, title, description, bgColor } = req.body;
@@ -741,20 +690,18 @@ const update_Development_WhyDOTR_By_ID = async (req, res, next) => {
     }
 };
 exports.update_Development_WhyDOTR_By_ID = update_Development_WhyDOTR_By_ID;
-const delete_Development_WhyDOTR_By_ID = async (req, res, next) => {
+const delete_Development_WhyDOTR_By_ID = async (req, res) => {
     try {
         const { category, whyDOTRId } = req.params;
         if (!category || !whyDOTRId) {
             return res.status(400).json({ message: "Add category and whyDOTRId..." });
         }
-        // Check if category exists
         const categoryDoc = await Why_DOTR_For_Services_Model_1.Why_DOTR_For_Development.findOne({
             category,
         });
         if (!categoryDoc) {
             return res.status(404).json({ message: "Category not found..." });
         }
-        // Check if whyDotr with _id exists in the category
         const whyDotrExists = categoryDoc.reasons.some((reason) => reason._id.toString() === whyDOTRId);
         if (!whyDotrExists) {
             return res
@@ -775,8 +722,6 @@ const delete_Development_WhyDOTR_By_ID = async (req, res, next) => {
     catch (error) {
         console.error("Error deleting whyDotr:", error);
         res.status(500).json({ message: "Server error." });
-        next(error);
     }
 };
 exports.delete_Development_WhyDOTR_By_ID = delete_Development_WhyDOTR_By_ID;
-//#endregion

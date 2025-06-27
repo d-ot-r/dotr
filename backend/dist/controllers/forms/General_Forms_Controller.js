@@ -2,11 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.submit_General_Form = void 0;
 const FORM_Model_1 = require("../../models/forms/FORM_Model");
-// Submit General Form
 const submit_General_Form = async (req, res) => {
     try {
         const formData = await FORM_Model_1.General_Form_Model.create(req.body);
-        // console.log("🚀 Incoming form data:", req.body);
         res
             .status(201)
             .json({ success: true, message: "Form submitted!", data: formData });

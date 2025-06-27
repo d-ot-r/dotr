@@ -8,21 +8,18 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const DesigningRoutes_1 = __importDefault(require("./routes/DesigningRoutes"));
 const DevelopmentRoutes_1 = __importDefault(require("./routes/DevelopmentRoutes"));
 const FormRoutes_1 = __importDefault(require("./routes/forms/FormRoutes"));
-const cors_1 = __importDefault(require("cors")); // Import cors
+const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-// Enable CORS
 app.use((0, cors_1.default)({
-    origin: "http://localhost:3000", // Or your frontend's origin
+    origin: "http://localhost:3000",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    // allowedHeaders: ["Content-Type", "Authorization", "sentry-trace"], // Add 'sentry-trace' here
-    credentials: true, // if you use cookies, auth etc.
+    credentials: true,
 }));
 app.use(express_1.default.json());
-app.get("/", (req, res) => {
+app.get("/", (res) => {
     res.send("DOTR Backend is Running!");
 });
-// Routes
 app.use("/api/designing/", DesigningRoutes_1.default);
 app.use("/api/development/", DevelopmentRoutes_1.default);
 app.use("/api/form/", FormRoutes_1.default);

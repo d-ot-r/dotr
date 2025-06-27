@@ -1,11 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Why_DOTR_For_Development = exports.Why_DOTR_For_Designing = void 0;
-// models/designing/DOTRForDesigningModel.ts
 const mongoose_1 = require("mongoose");
 const Develpoment_DB_1 = require("../config/Develpoment_DB");
 const Designing_DB_1 = require("../config/Designing_DB");
-// Define schema
 const Why_DOTR_For_Services_Schema = new mongoose_1.Schema({
     category: {
         type: String,
@@ -21,10 +19,10 @@ const Why_DOTR_For_Services_Schema = new mongoose_1.Schema({
             description: { type: String },
             bgColor: { type: String },
         },
-        { _id: true }, // <-- ensure _id is included
+        { _id: true },
     ],
 }, {
-    timestamps: true, // Adds createdAt and updatedAt fields
+    timestamps: true,
 });
 exports.Why_DOTR_For_Designing = Designing_DB_1.Designing_Connection.model("Why_DOTR_For_Services", Why_DOTR_For_Services_Schema, "Why_DOTR_For_Services");
 exports.Why_DOTR_For_Development = Develpoment_DB_1.Development_Connection.model("Why_DOTR_For_Services", Why_DOTR_For_Services_Schema, "Why_DOTR_For_Services");

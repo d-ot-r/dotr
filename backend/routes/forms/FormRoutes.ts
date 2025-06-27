@@ -21,12 +21,10 @@ import { authenticate_User } from "../../controllers/forms/Authentication_FORMs_
 
 const router = express.Router();
 
-router.post("/sign-in/submit", async (req, res, next) => {
+router.post("/sign-in/submit", async (req, res) => {
   try {
-    await authenticate_User(req, res, next);
-  } catch (error) {
-    next(error);
-  }
+    await authenticate_User(req, res);
+  } catch (error) {}
 });
 
 router.post("/general/submit", submit_General_Form);

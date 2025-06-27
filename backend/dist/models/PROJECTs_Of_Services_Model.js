@@ -4,7 +4,6 @@ exports.PROJECTs_Of_Development = exports.PROJECTs_Of_Designing = void 0;
 const mongoose_1 = require("mongoose");
 const Designing_DB_1 = require("../config/Designing_DB");
 const Develpoment_DB_1 = require("../config/Develpoment_DB");
-// Define schema
 const PROJECTs_Of_Services_Schema = new mongoose_1.Schema({
     group: { type: String, required: true },
     category: {
