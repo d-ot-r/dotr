@@ -5,7 +5,7 @@ export const About_Hero = () => (
   <HERO
     department="ABOUT"
     category="about"
-    isPage={false}
+    isPage={true}
     useLocalData={true}
     admin={false}
   />
