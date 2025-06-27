@@ -16,6 +16,6 @@ Development_Connection.on("connected", () => {
   console.log("-> ✅ Development_DB connected successfully.");
 });
 
-Development_Connection.on("error", (err) => {
+Development_Connection.on("error", (err: any) => {
   console.error("-> ❌ Development_DB connection error:", err);
 });

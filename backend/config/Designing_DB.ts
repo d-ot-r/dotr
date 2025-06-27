@@ -16,6 +16,6 @@ Designing_Connection.on("connected", () => {
   console.log("-> ✅ Designing_DB connected successfully.");
 });
 
-Designing_Connection.on("error", (err) => {
+Designing_Connection.on("error", (err: any) => {
   console.error("-> ❌ Designing_DB connection error:", err);
 });

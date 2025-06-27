@@ -16,6 +16,6 @@ Form_Connection.on("connected", () => {
   console.log("-> ✅ Form_DB connected successfully.");
 });
 
-Form_Connection.on("error", (err) => {
+Form_Connection.on("error", (err: any) => {
   console.error("-> ❌ Form_DB connection error:", err);
 });

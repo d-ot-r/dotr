@@ -311,7 +311,7 @@ export const get_Development_Importance_By_Category = async (
       category: category,
     });
     res.status(200).json(importance);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json({ error: "Failed to fetch importance by category" });
   }
 };
@@ -463,7 +463,7 @@ export const get_Development_Offerings_By_Category = async (
       category: category,
     });
     res.status(200).json(offerings);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json({ error: "Failed to fetch offerings by category" });
   }
 };
@@ -685,7 +685,7 @@ export const get_Development_Services_By_Group = async (
       group: group,
     });
     res.status(200).json(services);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json({ error: "Failed to fetch services by group" });
   }
 };
