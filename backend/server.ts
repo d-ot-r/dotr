@@ -10,10 +10,21 @@ dotenv.config();
 
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://dotr-global.vercel.app", // ✅ Add this line
+];
+
 // Enable CORS
 app.use(
   cors({
-    origin: "http://localhost:3000", // Or your frontend's origin
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     // allowedHeaders: ["Content-Type", "Authorization", "sentry-trace"], // Add 'sentry-trace' here
     credentials: true, // if you use cookies, auth etc.
