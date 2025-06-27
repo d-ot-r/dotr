@@ -221,7 +221,7 @@ export const SERVICEs: React.FC<ServicesProps> = ({
     const fetchServices = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/${department}/services/${group}`
+          `https://dotr-backend.onrender.com/api/${department}/services/${group}`
         ).then((response) => response.json());
         const matchedServices = response.services ?? [];
         // console.log(matchedServices);
@@ -258,7 +258,7 @@ export const SERVICEs: React.FC<ServicesProps> = ({
 
     try {
       const res = await fetch(
-        `http://localhost:8000/api/${department}/services/${group}/delete/${_id}`,
+        `https://dotr-backend.onrender.com/api/${department}/services/${group}/delete/${_id}`,
         { method: "DELETE" }
       );
 
@@ -464,8 +464,8 @@ export const SERVICEs: React.FC<ServicesProps> = ({
                 try {
                   const url =
                     mode === "add"
-                      ? `http://localhost:8000/api/${department}/services/add`
-                      : `http://localhost:8000/api/${department}/services/${group}/update/${activeServices._id}`;
+                      ? `https://dotr-backend.onrender.com/api/${department}/services/add`
+                      : `https://dotr-backend.onrender.com/api/${department}/services/${group}/update/${activeServices._id}`;
 
                   const method = mode === "add" ? "POST" : "PUT";
 

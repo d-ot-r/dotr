@@ -167,7 +167,7 @@ export const OFFERINGs = ({
     const fetchOfferings = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/${department}/offerings/${category}`
+          `https://dotr-backend.onrender.com/api/${department}/offerings/${category}`
         );
         const data: OfferingsData[] = await response.json();
         const matchedOfferings = data.find(
@@ -194,7 +194,7 @@ export const OFFERINGs = ({
 
     try {
       const res = await fetch(
-        `http://localhost:8000/api/${department}/offerings/${category}/delete/${_id}`,
+        `https://dotr-backend.onrender.com/api/${department}/offerings/${category}/delete/${_id}`,
         { method: "DELETE" }
       );
 
@@ -290,8 +290,8 @@ export const OFFERINGs = ({
                 try {
                   const url =
                     mode === "add"
-                      ? `http://localhost:8000/api/${department}/offerings/add`
-                      : `http://localhost:8000/api/${department}/offerings/${category}/update/${activeOffering._id}`;
+                      ? `https://dotr-backend.onrender.com/api/${department}/offerings/add`
+                      : `https://dotr-backend.onrender.com/api/${department}/offerings/${category}/update/${activeOffering._id}`;
 
                   const method = mode === "add" ? "POST" : "PUT";
 
@@ -444,7 +444,7 @@ export const OFFERINGs = ({
                 e.preventDefault();
                 try {
                   const res = await fetch(
-                    `http://localhost:8000/api/${department}/offerings/add`,
+                    `https://dotr-backend.onrender.com/api/${department}/offerings/add`,
                     {
                       method: "POST",
                       headers: { "Content-Type": "application/json" },
@@ -567,7 +567,7 @@ export const OFFERINGs = ({
 
                 try {
                   const res = await fetch(
-                    `http://localhost:8000/api/${department}/offerings/${category}/update/${editingOffering._id}`,
+                    `https://dotr-backend.onrender.com/api/${department}/offerings/${category}/update/${editingOffering._id}`,
                     {
                       method: "PUT",
                       headers: { "Content-Type": "application/json" },

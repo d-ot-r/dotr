@@ -221,7 +221,7 @@ export const ED_Form_Data: React.FC = () => {
     const fetchForms = async () => {
       try {
         const res = await fetch(
-          `http://localhost:8000/api/form/ecommerce-development/all`
+          `https://dotr-backend.onrender.com/api/form/ecommerce-development/all`
         );
         if (!res.ok) throw new Error("Failed to fetch form data");
 
@@ -275,7 +275,7 @@ export const ED_Form_Data: React.FC = () => {
     console.log(id);
     try {
       const res = await fetch(
-        `http://localhost:8000/api/form/ecommerce-development/delete/${id}`,
+        `https://dotr-backend.onrender.com/api/form/ecommerce-development/delete/${id}`,
         {
           method: "DELETE",
         }

@@ -96,7 +96,7 @@ export const IMPORTANCE = ({
       const fetchImportanceData = async () => {
         try {
           const response = await fetch(
-            `http://localhost:8000/api/${department}/importance/${category}`
+            `https://dotr-backend.onrender.com/api/${department}/importance/${category}`
           );
           const data = await response.json();
           setData(data[0]);
@@ -124,7 +124,7 @@ export const IMPORTANCE = ({
       return;
     try {
       await axios.delete(
-        `http://localhost:8000/api/${department}/importance/${category}/delete/${id}`
+        `https://dotr-backend.onrender.com/api/${department}/importance/${category}/delete/${id}`
       );
       setData(null);
     } catch (error) {
@@ -138,13 +138,13 @@ export const IMPORTANCE = ({
     try {
       if (mode === "add") {
         const response = await axios.post(
-          `http://localhost:8000/api/${department}/importance/${category}/add`,
+          `https://dotr-backend.onrender.com/api/${department}/importance/${category}/add`,
           activeImportance
         );
         setData(response.data);
       } else if (mode === "edit") {
         const response = await axios.put(
-          `http://localhost:8000/api/${department}/importance/${category}/update/${activeImportance._id}`,
+          `https://dotr-backend.onrender.com/api/${department}/importance/${category}/update/${activeImportance._id}`,
           activeImportance
         );
         setData(response.data.data); // note `.data.data` because of your response structure

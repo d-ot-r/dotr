@@ -45,7 +45,7 @@ export const HERO = ({
     const fetchHeroData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/${department}/hero/${category}`
+          `https://dotr-backend.onrender.com/api/${department}/hero/${category}`
         );
         const data = await response.json();
         if (isPage) {
@@ -86,7 +86,7 @@ export const HERO = ({
 
     try {
       const res = await fetch(
-        `http://localhost:8000/api/${department}/hero/${category}/delete/${id}`,
+        `https://dotr-backend.onrender.com/api/${department}/hero/${category}/delete/${id}`,
         {
           method: "DELETE",
         }
@@ -248,8 +248,8 @@ export const HERO = ({
                 try {
                   const url =
                     mode === "add"
-                      ? `http://localhost:8000/api/${department}/hero/${category}/add`
-                      : `http://localhost:8000/api/${department}/hero/${category}/update/${activeHero._id}`;
+                      ? `https://dotr-backend.onrender.com/api/${department}/hero/${category}/add`
+                      : `https://dotr-backend.onrender.com/api/${department}/hero/${category}/update/${activeHero._id}`;
 
                   const method = mode === "add" ? "POST" : "PUT";
 
@@ -420,7 +420,7 @@ export const HERO = ({
 //     const fetchHeroData = async () => {
 //       try {
 //         const response = await fetch(
-//           `http://localhost:8000/api/${department}/hero/${category}`
+//           `https://dotr-backend.onrender.com/api/${department}/hero/${category}`
 //         );
 //         const data = await response.json();
 //         setHeroData(data);
@@ -446,7 +446,7 @@ export const HERO = ({
 
 //     try {
 //       const res = await fetch(
-//         `http://localhost:8000/api/${department}/hero/${category}/delete/${id}`,
+//         `https://dotr-backend.onrender.com/api/${department}/hero/${category}/delete/${id}`,
 //         {
 //           method: "DELETE",
 //         }
@@ -551,8 +551,8 @@ export const HERO = ({
 //                   try {
 //                     const url =
 //                       mode === "add"
-//                         ? `http://localhost:8000/api/${department}/hero/${category}/add`
-//                         : `http://localhost:8000/api/${department}/hero/${category}/update/${activeHero._id}`;
+//                         ? `https://dotr-backend.onrender.com/api/${department}/hero/${category}/add`
+//                         : `https://dotr-backend.onrender.com/api/${department}/hero/${category}/update/${activeHero._id}`;
 
 //                     const method = mode === "add" ? "POST" : "PUT";
 
@@ -726,7 +726,7 @@ export const HERO = ({
 //     const fetchHero = async () => {
 //       try {
 //         const response = await fetch(
-//           `http://localhost:8000/api/${department}/hero/${category}`
+//           `https://dotr-backend.onrender.com/api/${department}/hero/${category}`
 //         ).then((response) => response.json());
 //         // console.log(response[0]);
 //         setHero(response[0]);
@@ -758,7 +758,7 @@ export const HERO = ({
 
 //     try {
 //       const res = await fetch(
-//         `http://localhost:8000/api/${department}/hero/${category}/delete/${id}`,
+//         `https://dotr-backend.onrender.com/api/${department}/hero/${category}/delete/${id}`,
 //         {
 //           method: "DELETE",
 //         }
@@ -854,8 +854,8 @@ export const HERO = ({
 //                 try {
 //                   const url =
 //                     mode === "add"
-//                       ? `http://localhost:8000/api/${department}/hero/${category}/add`
-//                       : `http://localhost:8000/api/${department}/hero/${category}/update/${activeHero._id}`;
+//                       ? `https://dotr-backend.onrender.com/api/${department}/hero/${category}/add`
+//                       : `https://dotr-backend.onrender.com/api/${department}/hero/${category}/update/${activeHero._id}`;
 
 //                   const method = mode === "add" ? "POST" : "PUT";
 

@@ -235,7 +235,7 @@ export const FAQs = ({
     const fetchFaqs = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/${department}/faqs/${category}`
+          `https://dotr-backend.onrender.com/api/${department}/faqs/${category}`
         );
         const data = await response.json();
         const matchedFaqs = data.find(
@@ -273,7 +273,7 @@ export const FAQs = ({
 
     try {
       const res = await fetch(
-        `http://localhost:8000/api/${department}/faqs/${category}/delete/${_id}`,
+        `https://dotr-backend.onrender.com/api/${department}/faqs/${category}/delete/${_id}`,
         { method: "DELETE" }
       );
 
@@ -363,8 +363,8 @@ export const FAQs = ({
                 try {
                   const url =
                     mode === "add"
-                      ? `http://localhost:8000/api/${department}/faqs/add`
-                      : `http://localhost:8000/api/${department}/faqs/${category}/update/${activeFaq._id}`;
+                      ? `https://dotr-backend.onrender.com/api/${department}/faqs/add`
+                      : `https://dotr-backend.onrender.com/api/${department}/faqs/${category}/update/${activeFaq._id}`;
 
                   const method = mode === "add" ? "POST" : "PUT";
 

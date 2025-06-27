@@ -33,7 +33,7 @@ export const Sign_UP_FORM = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/api/form/admin/sign-up/submit`,
+        `https://dotr-backend.onrender.com/api/form/admin/sign-up/submit`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -150,7 +150,7 @@ export const Sign_IN_FORM = () => {
     try {
       setLoading(true); // 🌀 Start loader
       const response = await fetch(
-        `http://localhost:8000/api/form/sign-in/submit`,
+        `https://dotr-backend.onrender.com/api/form/sign-in/submit`,
         {
           method: "POST",
           headers: {

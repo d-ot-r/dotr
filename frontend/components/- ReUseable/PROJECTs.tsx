@@ -43,7 +43,7 @@ export const PROJECTs = ({
         if (category) params.append("category", category);
 
         const response = await fetch(
-          `http://localhost:8000/api/${department}/projects/${group}/${category}`
+          `https://dotr-backend.onrender.com/api/${department}/projects/${group}/${category}`
         ).then((response) => response.json());
         // console.log(department, group, category);
         // console.log(response);

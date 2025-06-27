@@ -1712,9 +1712,9 @@ export const General_FORM = ({ category }: { category: string }) => {
           const categories = ["designing", "development"];
           const responses = await Promise.all(
             categories?.map((category) =>
-              fetch(`http://localhost:8000/api/${category}/services/all`).then(
-                (res) => res.json()
-              )
+              fetch(
+                `https://dotr-backend.onrender.com/api/${category}/services/all`
+              ).then((res) => res.json())
             )
           );
           const allServices = responses.flatMap(
@@ -1723,7 +1723,7 @@ export const General_FORM = ({ category }: { category: string }) => {
           setServices(allServices);
         } else {
           const response = await fetch(
-            `http://localhost:8000/api/${category}/services/all`
+            `https://dotr-backend.onrender.com/api/${category}/services/all`
           ).then((response) => response.json());
           setServices(response[0].services || []);
         }
@@ -1759,7 +1759,7 @@ export const General_FORM = ({ category }: { category: string }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/api/form/${category}/submit`,
+        `https://dotr-backend.onrender.com/api/form/${category}/submit`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

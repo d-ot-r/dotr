@@ -157,7 +157,7 @@ export const Why_DOTR = ({
       const fetchWhyDOTR = async () => {
         try {
           const response = await fetch(
-            `http://localhost:8000/api/${department}/why-dotr/${category}`
+            `https://dotr-backend.onrender.com/api/${department}/why-dotr/${category}`
           );
           const data = await response.json();
 
@@ -189,7 +189,7 @@ export const Why_DOTR = ({
 
     try {
       const res = await fetch(
-        `http://localhost:8000/api/${department}/why-dotr/${category}/delete/${_id}`,
+        `https://dotr-backend.onrender.com/api/${department}/why-dotr/${category}/delete/${_id}`,
         { method: "DELETE" }
       );
 
@@ -302,8 +302,8 @@ export const Why_DOTR = ({
                 try {
                   const url =
                     mode === "add"
-                      ? `http://localhost:8000/api/${department}/why-dotr/add`
-                      : `http://localhost:8000/api/${department}/why-dotr/${category}/update/${activeWhyDOTR._id}`;
+                      ? `https://dotr-backend.onrender.com/api/${department}/why-dotr/add`
+                      : `https://dotr-backend.onrender.com/api/${department}/why-dotr/${category}/update/${activeWhyDOTR._id}`;
 
                   const method = mode === "add" ? "POST" : "PUT";
 
